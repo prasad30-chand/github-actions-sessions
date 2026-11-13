@@ -3,16 +3,16 @@ name: My First GitHub Actions
 
 on:
   workflow_dispatch:
-  input:
-    environment:
-      description: "Select the environment for the workflow"
-      required: true
-      default: "development"  
-      type: choice
-      options:
-        - development
-        - staging
-        - production
+    inputs:
+      environment:
+        description: "Select the environment for the workflow"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - staging
+          - production
 
 jobs:
   demo-job:
@@ -30,3 +30,6 @@ jobs:
 
       - name: List Files
         run: ls -la
+
+      - name: Display Environment
+        run: echo "Selected environment: ${{ inputs.environment }}"
