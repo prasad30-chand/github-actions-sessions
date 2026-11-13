@@ -1,13 +1,24 @@
-name: demo workflow
+
+name: My First GitHub Actions
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
-    
-    demo:
-    runs on: ubuntu-latest
+  demo-job:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: running demo workflow
-        run: echo " Hello world"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Welcome Message
+        run: echo "Hello! My first GitHub Actions workflow"
+
+      - name: Check Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
