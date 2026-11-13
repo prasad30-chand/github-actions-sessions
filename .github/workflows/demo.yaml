@@ -1,0 +1,13 @@
+name: demo workflow
+
+on:
+  push:
+
+jobs:
+    
+    demo:
+    runs on: ubuntu-latest
+
+    steps:
+      - name: running demo workflow
+        run: echo " Hello world"
