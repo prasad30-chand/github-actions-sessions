@@ -1,0 +1,48 @@
+
+name: error handling workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the environment for the workflow"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  error-handling-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Welcome Message
+        run: echo "Hello! This is the error handling workflow"
+
+      - name: Check Current Directory
+        run: pwd
+
+      - name: List Files
+        run: ls -la
+
+      - name: Display Environment
+        run: |
+          echo "Selected environment: ${{ inputs.environment }}"
+
+      - name: Simulate Error
+        id: simulate-error
+        continue-on-error: true
+        run: |
+          echo "Simulating an error..."
+          exit 1
+
+      - name: Cleanup
+        if: always()
+        run: |
+          echo "Performing cleanup tasks..."
