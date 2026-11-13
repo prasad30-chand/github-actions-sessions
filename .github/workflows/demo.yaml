@@ -32,4 +32,5 @@ jobs:
         run: ls -la
 
       - name: Display Environment
-        run: echo "Selected environment: ${{ inputs.environment }}"
+        run: |
+          echo "Selected environment: ${{ inputs.environment }}"
